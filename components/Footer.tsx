@@ -4,10 +4,10 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="w-full bg-[#111111] text-gray-400 py-10 mt-10 border-t border-black">
-      <div className="max-w-[1600px] mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-8 grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-8">
 
         {/* Brand Section */}
-        <div className="flex flex-col items-start gap-5 md:col-span-6 lg:col-span-5">
+        <div className="flex flex-col items-center md:items-start gap-5 col-span-2 md:col-span-6 lg:col-span-5 text-center md:text-left">
           <div className="flex items-center gap-3">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8 text-white">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-8 4 5 5-9 4 11H3z" />
@@ -20,18 +20,18 @@ export default function Footer() {
         </div>
 
         {/* Links Section */}
-        <div className="flex flex-col gap-5 md:col-span-3 lg:col-span-2 lg:col-start-8">
-          <h4 className="text-white font-semibold tracking-widest text-xs uppercase">Legal</h4>
-          <div className="flex flex-col gap-3 text-sm">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors w-fit">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors w-fit">Terms of Service</Link>
+        <div className="flex flex-col items-center md:items-start gap-5 col-span-1 md:col-span-3 lg:col-span-2 lg:col-start-8">
+          <h4 className="text-white font-semibold tracking-widest text-xs uppercase text-center md:text-left">Quick Links</h4>
+          <div className="flex flex-col items-center md:items-start gap-3 text-sm">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors w-fit text-center md:text-left">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white transition-colors w-fit text-center md:text-left">Terms of Service</Link>
           </div>
         </div>
 
         {/* Social Section */}
-        <div className="flex flex-col gap-5 md:col-span-3 lg:col-span-3">
-          <h4 className="text-white font-semibold tracking-widest text-xs uppercase">Connect</h4>
-          <div className="flex gap-4">
+        <div className="flex flex-col items-center md:items-start gap-5 col-span-1 md:col-span-3 lg:col-span-3">
+          <h4 className="text-white font-semibold tracking-widest text-xs uppercase text-center md:text-left">Connect</h4>
+          <div className="flex justify-center md:justify-start gap-4">
             <a href="https://www.youtube.com/@milanthemusafir/shorts" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-800/50 rounded-full hover:bg-white hover:text-black hover:scale-110 transition-all duration-300" aria-label="YouTube">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -46,9 +46,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-4 lg:px-8 mt-10 pt-6 border-t border-gray-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-8 mt-10 pt-6 border-t border-gray-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-center md:text-left">
         <p>&copy; {new Date().getFullYear()} Milan The Musafir. All rights reserved.</p>
-        <p className="text-gray-600">As an Amazon & Flipkart affiliate, we may earn a commission from qualifying purchases.</p>
+        <p className="text-gray-600 max-w-sm md:max-w-none mx-auto md:mx-0">As an Amazon & Flipkart affiliate, we may earn a commission from qualifying purchases.</p>
       </div>
     </footer>
   );
