@@ -106,5 +106,37 @@ export const products: Product[] = [
     category: "Car Accessories",
     amazonUrl: "https://link.amazon/B0bQn0gcH",
     tags: ["sleeping", "cat", "car", "toy", "dashboard", "decor", "cute"],
+  },
+  {
+    id: "dji-osmo-5",
+    name: "DJI Osmo 5 Pro",
+    image: "/products/dji-osmo-5-pro.jpg",
+    category: "Car Accessories",
+    amazonUrl: "https://link.amazon/B0cdojBh2",
+    tags: ["camera", "dji", "dji 5", "osmo"],
+  }, 
+  {
+    id: "ulanzi-suction-mount",
+    name: "Ulanzi Suction Mount",
+    image: "/products/ulanzi-suction-mount.jpg",
+    category: "Car Accessories",
+    amazonUrl: "https://link.amazon/B0esnSTWL",
+    tags: ["camera", "mount", "suction", "ulanzi"]
+  },
+  {
+    id: "sandisk-256",
+    name: "Sandisk 256 GB",
+    image: "/products/sandisk-256.jpg",
+    category: "Electronics",
+    amazonUrl: "https://link.amazon/B07dK5U08",
+    tags: ["memory", "card", "sd card", "sandisk"]
+  },
+  {
+    id: "ulanzi-tripod-gopro",
+    name: "Ulanzi tripod Gopro",
+    image: "/products/ulanzi-tripod-gopro.jpg",
+    category: "Camera",
+    amazonUrl: "https://link.amazon/B0eplNgs5",
+    tags: ["tripod", "camera", "stand", "ulanzi"]
   }
 ];
