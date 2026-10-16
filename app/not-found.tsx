@@ -57,7 +57,7 @@ export default function NotFound() {
               </Link>
 
               <Link 
-                href="/?category=Gadgets" 
+                href="/?category=raahi-setup" 
                 className="text-[#9c6a46] hover:text-[#7a5234] font-medium transition-colors flex items-center gap-1 group"
               >
                 Or explore our top picks

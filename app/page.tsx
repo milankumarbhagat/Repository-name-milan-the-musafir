@@ -2,7 +2,8 @@ import Image from "next/image";
 import Header from "../components/Header";
 import ProductGrid from "../components/ProductGrid";
 import Footer from "../components/Footer";
-import { products } from "../data/products";
+import CategoryChips from "../components/CategoryChips";
+import { products, getCategory } from "../data/products";
 
 export default async function Home({
   searchParams,
@@ -15,15 +16,11 @@ export default async function Home({
 
   let filteredProducts = products;
 
-  if (category) {
-    // Basic mapping: match exact or fuzzy match "Car Accessories" -> "Car & Road Trip"
-    filteredProducts = filteredProducts.filter(p => {
-      const pCat = p.category.toLowerCase();
-      const sCat = category.toLowerCase();
-      if (sCat === "car accessories" && pCat.includes("car")) return true;
-      if (sCat === "gadgets" && pCat.includes("creator")) return true;
-      return pCat.includes(sCat);
-    });
+  const activeCategory = getCategory(category);
+
+  // Unknown or old category links (e.g. "Car Accessories", "Apparel") fall back to all products
+  if (activeCategory) {
+    filteredProducts = filteredProducts.filter((p) => p.category === activeCategory.slug);
   }
 
   if (q) {
@@ -35,9 +32,19 @@ export default async function Home({
     });
   }
 
+  // On a category page, keep the visitor browsing with picks from other categories
+  const morePicks = activeCategory && !q ? products.filter((p) => p.category !== activeCategory.slug).slice(0, 8) : [];
+
+  const heading = q ? `"${q}" ke results` : activeCategory ? activeCategory.label : "Meri Top Picks";
+  const subheading = q
+    ? "Naam ya tag se match hone wale products."
+    : activeCategory
+      ? activeCategory.description
+      : "Raahi ka setup, shooting gear aur road trip ki cheezein. Har pick ke saath meri honest line.";
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
-      <Header currentCategory={category} searchQuery={q} />
+      <Header searchQuery={q} />
 
       {/* Hero Banner Section */}
       <section className="w-full relative bg-gray-100">
@@ -53,19 +60,25 @@ export default async function Home({
         </div>
       </section>
 
-      <main className="flex-grow flex flex-col items-center py-12">
-        <div className="w-full max-w-7xl px-4 mb-10 text-center flex flex-col items-center">
-          {/* Mountain Icon */}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8 text-gray-800 mb-3">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-8 4 5 5-9 4 11H3z" />
-          </svg>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {q ? `Search Results for "${q}"` : category ? `Category: ${category}` : 'Our Top Picks'}
-          </h1>
-          <p className="text-gray-500">
-            {q ? `Showing results matching your search.` : category ? `Browsing our top picks in ${category}.` : 'Discover essential travel gear, tools, and creator equipment.'}
+      <main className="flex-grow flex flex-col pb-10 md:pb-16">
+        {/* Section intro: left aligned, compact */}
+        <section className="w-full max-w-[1600px] mx-auto px-4 lg:px-8 pt-6 md:pt-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#b45309]">
+            {q ? "Search" : activeCategory ? "Category" : "Musafir Store"}
           </p>
-        </div>
+          <div className="mt-1 flex items-center gap-3">
+            <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-gray-900">
+              {heading}
+            </h1>
+            <span className="shrink-0 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs md:text-sm font-medium text-gray-600">
+              {filteredProducts.length} {filteredProducts.length === 1 ? "pick" : "picks"}
+            </span>
+          </div>
+          <p className="mt-1 md:mt-2 max-w-2xl text-sm md:text-base text-gray-600">{subheading}</p>
+        </section>
+
+        {/* Category chips: the only category navigation, sticky under the header */}
+        <CategoryChips activeSlug={q ? null : activeCategory?.slug ?? ""} />
 
         {filteredProducts.length > 0 ? (
           <ProductGrid products={filteredProducts} />
@@ -76,12 +89,20 @@ export default async function Home({
             </svg>
             <h3 className="text-xl font-medium text-gray-900 mb-2">No products found</h3>
             <p className="text-gray-500 max-w-md">
-              {q 
-                ? `We couldn't find anything matching "${q}". Try adjusting your search term or browse our categories.`
-                : `We don't have any products in the "${category}" category right now. Please check back later!`
-              }
+              {`We couldn't find anything matching "${q}". Try adjusting your search term or browse our categories.`}
             </p>
           </div>
+        )}
+        {morePicks.length > 0 && (
+          <section aria-labelledby="more-picks" className="w-full mt-12 md:mt-16">
+            <div className="max-w-[1600px] mx-auto px-4 lg:px-8 mb-4 md:mb-6">
+              <h2 id="more-picks" className="text-xl md:text-2xl font-bold tracking-tight text-gray-900">
+                Baaki picks bhi dekho
+              </h2>
+              <p className="mt-1 text-sm md:text-base text-gray-600">Doosri categories ki kuch aur cheezein.</p>
+            </div>
+            <ProductGrid products={morePicks} />
+          </section>
         )}
       </main>
 
