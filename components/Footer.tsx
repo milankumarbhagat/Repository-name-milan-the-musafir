@@ -22,9 +22,9 @@ export default function Footer() {
         {/* Links Section */}
         <div className="flex flex-col items-center md:items-start gap-5 col-span-1 md:col-span-3 lg:col-span-2 lg:col-start-8">
           <h4 className="text-white font-semibold tracking-widest text-xs uppercase text-center md:text-left">Quick Links</h4>
-          <div className="flex flex-col items-center md:items-start gap-3 text-sm">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors w-fit text-center md:text-left">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors w-fit text-center md:text-left">Terms of Service</Link>
+          <div className="flex flex-col items-center md:items-start gap-1 md:gap-3 text-sm">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors w-fit text-center md:text-left py-3 md:py-0">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white transition-colors w-fit text-center md:text-left py-3 md:py-0">Terms of Service</Link>
           </div>
         </div>
 
@@ -48,7 +48,7 @@ export default function Footer() {
 
       <div className="max-w-[1600px] mx-auto px-4 lg:px-8 mt-10 pt-6 border-t border-gray-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-center md:text-left">
         <p>&copy; {new Date().getFullYear()} Milan The Musafir. All rights reserved.</p>
-        <p className="text-gray-600 max-w-sm md:max-w-none mx-auto md:mx-0">As an Amazon & Flipkart affiliate, we may earn a commission from qualifying purchases.</p>
+        <p className="text-gray-400 max-w-sm md:max-w-none mx-auto md:mx-0">As an Amazon & Flipkart affiliate, we may earn a commission from qualifying purchases.</p>
       </div>
     </footer>
   );
