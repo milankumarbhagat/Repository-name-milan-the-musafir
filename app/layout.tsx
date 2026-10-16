@@ -25,7 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="min-h-screen bg-gray-50 flex flex-col">
+      {/* suppressHydrationWarning: browser extensions (e.g. ColorZilla) add attributes to <body> before React loads */}
+      <body className="min-h-screen bg-gray-50 flex flex-col" suppressHydrationWarning>
         {children}
         <Analytics />
       </body>

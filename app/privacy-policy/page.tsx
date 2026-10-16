@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-      <Header currentCategory="" searchQuery="" />
+      <Header />
 
       <main className="flex-grow max-w-4xl mx-auto w-full px-4 py-16">
         <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
